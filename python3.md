@@ -334,5 +334,52 @@ file_path = directory / "file_name"
 
 - 지금 귀찮더라도 나중을 위해 코드를 완벽하게 구현할 수 있도록 노력해야 한다
   - 반복작업은 없어야 한다
+  - e.g. 같은 모듈에서 `import`되는 경우가 반복된다면`from import`를 사용한다
+
+```python
+from datetime import timedelta, timezone, datetime
+
+
+this_day_in_last_week = (datetime.now(timezone.utc) - timedelta(days=-7)).strftime('%Y-%m-%d')
+```
+ - 클래스의 메서드가 `self`를 호출하지 않는다면 `@classmethod`로 래핑한다
+ 
+```python
+class PathSplitter:
+    def __init__(self, arg: str):
+        self.arg
+
+    @classmethod
+    def split_text(cls, text: str, point_str: str):
+        return text.split(point_str)
+
+    def return_split_text(self):
+        return split_text(self.arg, "/")
+
+
+if __name__ == '__main__':
+    arg = "/project/service/key/path"
+    my_class = MyClass(arg)
+    print(my_class().return_split_text())
+```
   
+- 리스트 내포문을 적극적으로 사용한다
+  - `if else`문을 없앨 수 있다
+  - 하지만 반환값이 없는데 원라이너로 쓰고 싶다고 무의미하게 리스트를 생성해선 안된다
+    
+```python
+def normal_list_comprehension(*args):
+    return [arg for arg in args]
+
+
+def list_comprehension_with_if(*args):
+    return [idx for idx, arg in enumerous(*args) if arg is True]
+
+
+def list_comprehension_with_if_else(*args):
+    return [idx if arg is True else arg for idx, arg in args]
+
+```
+  
+
   
