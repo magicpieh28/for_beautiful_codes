@@ -331,3 +331,8 @@ from pathlib import Path
 directory = Path(__file__).resolve().parent
 file_path = directory / "file_name"
 ```
+
+- 지금 귀찮더라도 나중을 위해 코드를 완벽하게 구현할 수 있도록 노력해야 한다
+  - 반복작업은 없어야 한다
+  
+  
